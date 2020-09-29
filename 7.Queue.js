@@ -40,3 +40,4 @@ class Queue {
     return resultStr;
   }
 }
+export { Queue };
