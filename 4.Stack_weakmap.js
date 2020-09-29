@@ -27,3 +27,4 @@ class Stack {
     wm.set(this, []);
   }
 }
+export default Stack;
