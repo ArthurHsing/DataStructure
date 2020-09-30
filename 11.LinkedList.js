@@ -25,11 +25,8 @@ export default class LinkedList {
       if (index === 0) {
         this.head = current.next;
       } else {
-        let previous;
-        for (let i = 0; i < index; i++) {
-          previous = current;
-          current = current.next;
-        }
+        let previous = this.getElementAt(index - 1);
+        current = previous.next;
         previous.next = current.next;
       }
       this.count--;
@@ -53,4 +50,5 @@ const linkedList = new LinkedList();
 linkedList.push(1);
 linkedList.push(2);
 linkedList.push(3);
+linkedList.removeAt(3);
 console.log(linkedList);
