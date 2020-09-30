@@ -68,3 +68,5 @@ class Deque {
     return resultStr;
   }
 }
+
+export { Deque };
