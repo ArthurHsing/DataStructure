@@ -1,7 +1,7 @@
 import { DoublyNode } from './models/linked-list-models.js';
 import LinkedList from './11.LinkedList.js';
 import { defaultEquals } from './util.js';
-class DoublyLinkedList extends LinkedList {
+export default class DoublyLinkedList extends LinkedList {
   constructor(equalsFn = defaultEquals) {
     super(equalsFn);
     this.tail = undefined;
@@ -67,16 +67,9 @@ class DoublyLinkedList extends LinkedList {
         previous.next = next;
         next.pre = previous;
       }
+      this.count--;
       return deleted;
     }
     return undefined;
   }
 }
-
-const dl = new DoublyLinkedList();
-dl.push(1);
-dl.push(2);
-dl.push(3);
-dl.push(4);
-console.dir(dl.removeAt(3));
-console.dir(dl);
