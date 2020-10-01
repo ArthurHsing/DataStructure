@@ -25,7 +25,7 @@ export default class LinkedList {
       if (index === 0) {
         this.head = current.next;
       } else {
-        let previous = this.getElementAt(index - 1);
+        const previous = this.getElementAt(index - 1);
         current = previous.next;
         previous.next = current.next;
       }
@@ -44,11 +44,70 @@ export default class LinkedList {
     }
     return undefined;
   }
+  insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+      const node = new Node(element);
+      if (index === 0) {
+        node.next = this.head;
+        this.head = node;
+      } else {
+        const previous = this.getElementAt(index - 1);
+        const current = previous.next;
+        previous.next = node;
+        node.next = current;
+      }
+      this.count++;
+      return true;
+    }
+    return false;
+  }
+  indexOf(element) {
+    let current = this.head;
+    let index = 0;
+    while (current) {
+      if (this.equalsFn(element, current.element)) {
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+    // for (let i = 0; i < this.count; i++) {
+    //   if (this.equalsFn(element, current.element)) {
+    //     return i;
+    //   }
+    //   current = current.next;
+    // }
+    return -1;
+  }
+  remove(element) {
+    return this.removeAt(this.indexOf(element));
+  }
+  size() {
+    return this.count;
+  }
+  isEmpty() {
+    return this.count === 0;
+  }
+  getHead() {
+    return this.head;
+  }
+  toString() {
+    if (this.head == null) {
+      return '';
+    }
+    let current = this.head;
+    let resultString = `${current.element}`;
+    while (current.next) {
+      current = current.next;
+      resultString = `${resultString}, ${current.element}`
+    }
+    return resultString;
+  }
 }
 
 const linkedList = new LinkedList();
-linkedList.push(1);
-linkedList.push(2);
-linkedList.push(3);
-linkedList.removeAt(3);
-console.log(linkedList);
+// linkedList.push(1);
+// linkedList.push(2);
+// linkedList.push(3);
+// linkedList.push(4);
+console.log(linkedList.toString());
