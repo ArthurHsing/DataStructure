@@ -25,6 +25,9 @@ class Set {
   sizeLegacy() {
     return Reflect.ownKeys(this.items).length;
   }
+  get size() {
+    return Reflect.ownKeys(this.items).length;
+  }
   valuesLegacy() {
     const result = [];
     for (let i of Reflect.ownKeys(this.items)) {
@@ -91,3 +94,4 @@ console.log(set1.union(set2).valuesLegacy());
 console.log(set1.intersection(set2).valuesLegacy());
 console.log(set1.difference(set2).valuesLegacy());
 console.log(set1.isSubsetOf(set2));
+console.log(set1.size);
