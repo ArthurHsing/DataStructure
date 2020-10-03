@@ -32,14 +32,25 @@ class Set {
     }
     return result;
   }
+  union(otherSet) {
+    const unionSet = new Set();
+    const setArr = [this.valuesLegacy(), otherSet.valuesLegacy()];
+    setArr.forEach(perSetValues => {
+      perSetValues.forEach(value => {
+        unionSet.add(value);
+      });
+    });
+    return unionSet;
+  }
 }
 
-const set = new Set();
-console.log(set.add(1));
-console.log(set.add(2));
-console.log(set.add(3));
-console.log(set.has(2));
-set.delete(2);
-console.log(set.has(2));
-console.log(set.sizeLegacy());
-console.log(set.valuesLegacy());
+const set1 = new Set();
+set1.add(1);
+set1.add(2);
+set1.add(3);
+
+const set2 = new Set();
+set2.add(2);
+set2.add(3);
+set2.add(4);
+console.log(set1.union(set2).valuesLegacy());
