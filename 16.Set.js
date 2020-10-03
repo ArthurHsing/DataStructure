@@ -55,6 +55,20 @@ class Set {
     }
     return intersectionSet;
   }
+  difference(otherSet) {
+    const differenceSet = new Set();
+    this.valuesLegacy().forEach(value => {
+      if (!otherSet.has(value)) {
+        differenceSet.add(value);
+      }
+    });
+    return differenceSet;
+  }
+  isSubsetOf(otherSet) {
+    return this.valuesLegacy().every(value => {
+      return otherSet.has(value);
+    });
+  }
 }
 
 const set1 = new Set();
@@ -66,6 +80,7 @@ set1.add(5);
 set1.add(6);
 set1.add(7);
 set1.add(8);
+set1.add(9);
 
 const set2 = new Set();
 set2.add(2);
@@ -74,3 +89,5 @@ set2.add(9);
 
 console.log(set1.union(set2).valuesLegacy());
 console.log(set1.intersection(set2).valuesLegacy());
+console.log(set1.difference(set2).valuesLegacy());
+console.log(set1.isSubsetOf(set2));
