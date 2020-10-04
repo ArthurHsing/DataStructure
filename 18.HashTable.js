@@ -39,4 +39,29 @@ class HashTable {
     }
     return false;
   }
+  size() {
+    return Object.keys(this.table).length;
+  }
+  isEmpty() {
+    return this.size() === 0;
+  }
+  toString() {
+    const keys = Object.keys(this.table);
+    const length = keys.length;
+    if (length === 0) {
+      return '';
+    }
+    let resultStr = `${keys[0]} => ${this.table[keys[0]]}`;
+    for (let i = 1; i < length; i++) {
+      resultStr = `${resultStr}, ${keys[i]} => ${this.table[keys[i]]}`;
+    }
+    return resultStr;
+  }
 }
+
+const ht = new HashTable();
+ht.put('a', 1234);
+ht.put('b', 1234);
+ht.put('c', 1234);
+// console.log(ht.isEmpty());
+console.log(ht.toString());
