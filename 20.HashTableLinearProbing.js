@@ -49,12 +49,45 @@ class HashTableLinearProbing {
     }
     return undefined;
   }
+  remove(key) {
+    let hash = this.hashCode(key);
+    let valuePair = this.table[hash];
+    if (valuePair != null) {
+      if (valuePair.key === key) {
+        delete this.table[hash];
+        this.verifyRemoveSideEffect(key, hash);
+        return true;
+      }
+      valuePair = this.table[++hash];
+      while (valuePair != null && valuePair.key !== key) {
+        valuePair = this.table[++hash];
+      }
+      if (valuePair != null && valuePair.key === key) {
+        delete this.table[hash];
+        this.verifyRemoveSideEffect(key, hash);
+        return true;
+      }
+    }
+    return false;
+  }
+  verifyRemoveSideEffect(key, removedPosition) {
+    let index = removedPosition + 1;
+    const hash = this.hashCode(key);
+    while (this.table[index] != null) {
+      const postHash = this.hashCode(this.table[index].key);
+      if (postHash <= removedPosition || postHash <= hash) {
+        this.table[removedPosition] = this.table[index];
+        delete this.table[index];
+        removedPosition = index;
+      }
+      index++;
+    }
+  }
 }
 
 const ht = new HashTableLinearProbing();
-ht.put('Ygritte', 12345);
-ht.put('Jonathan', 23456);
-ht.put('Jamie', 34567);
-ht.put(5, 45678);
+ht.put(1, 123);
+ht.put(1, 234);
+ht.put(2, 2345);
+ht.remove(1);
 console.dir(ht);
-console.log(ht.get('Ygritte'));
