@@ -77,6 +77,21 @@ export default class BinarySearchTree {
     }
     return current;
   }
+  search(value) {
+    return this.searchNode(this.root, value);
+  }
+  searchNode(node, value) {
+    if (node == null) {
+      return false;
+    }
+    if (this.compareFn(value, node.key) === Compare.LESS_THAN) {
+      return this.searchNode(node.left, value);
+    } else if (this.compareFn(value, node.key) === Compare.BIGGER_THAN) {
+      return this.searchNode(node.right, value);
+    } else {
+      return true;
+    }
+  }
 }
 const b = new BinarySearchTree();
 b.insert(10);
@@ -91,4 +106,5 @@ b.insert(11);
 b.insert(14);
 
 // console.log(b.min());
-console.log(b.max());
+// console.log(b.max());
+console.log(b.search(1));
