@@ -92,6 +92,40 @@ export default class BinarySearchTree {
       return true;
     }
   }
+  remove(key) {
+    this.root = this.removeNode(this.root, key);
+  }
+  removeNode(node, key) {
+    if (node == null) {
+      return null;
+    }
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      this.removeNode(node.left, key);
+      return node;
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      this.removeNode(node.right, key);
+      return node;
+    } else {
+      // 第一种情况
+      if (node.left == null && node.right == null) {
+        node = null;
+        return node;
+      }
+      // 第二种情况
+      if (node.left == null) {
+        node = node.right;
+        return node;
+      } else if (node.right == null) {
+        node = node.left;
+        return node;
+      }
+      // 第三种情况
+      const aux = this.minNode(node.right);
+      node.key = aux.key;
+      node.right = this.removeNode(node.right, aux.key);
+      return node;
+    }
+  }
 }
 const b = new BinarySearchTree();
 b.insert(10);
@@ -99,7 +133,7 @@ b.insert(6);
 b.insert(3);
 b.insert(7);
 b.insert(2);
-b.insert(15)
+b.insert(15);
 b.insert(9);
 b.insert(8);
 b.insert(11);
@@ -107,4 +141,6 @@ b.insert(14);
 
 // console.log(b.min());
 // console.log(b.max());
-console.log(b.search(1));
+// console.log(b.search(1));
+b.remove(10);
+console.dir(b);
