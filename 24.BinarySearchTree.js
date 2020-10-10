@@ -57,6 +57,26 @@ export default class BinarySearchTree {
       callback(node.key);
     }
   }
+  min() {
+    return this.minNode(this.root);
+  }
+  minNode(node) {
+    let current = node;
+    while (current != null && current.left != null) {
+      current = current.left;
+    }
+    return current;
+  }
+  max() {
+    return this.maxNode(this.root);
+  }
+  maxNode(node) {
+    let current = node;
+    while (current != null && current.right != null) {
+      current = current.right;
+    }
+    return current;
+  }
 }
 const b = new BinarySearchTree();
 b.insert(10);
@@ -70,6 +90,5 @@ b.insert(8);
 b.insert(11);
 b.insert(14);
 
-b.postOrderTraverse(function (value) {
-  console.log(value);
-});
+// console.log(b.min());
+console.log(b.max());
