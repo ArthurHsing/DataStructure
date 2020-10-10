@@ -100,10 +100,10 @@ export default class BinarySearchTree {
       return null;
     }
     if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-      this.removeNode(node.left, key);
+      node.left = this.removeNode(node.left, key);
       return node;
     } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-      this.removeNode(node.right, key);
+      node.right = this.removeNode(node.right, key);
       return node;
     } else {
       // 第一种情况
@@ -127,20 +127,20 @@ export default class BinarySearchTree {
     }
   }
 }
-const b = new BinarySearchTree();
-b.insert(10);
-b.insert(6);
-b.insert(3);
-b.insert(7);
-b.insert(2);
-b.insert(15);
-b.insert(9);
-b.insert(8);
-b.insert(11);
-b.insert(14);
+// const b = new BinarySearchTree();
+// b.insert(10);
+// b.insert(6);
+// b.insert(3);
+// b.insert(7);
+// b.insert(2);
+// b.insert(15);
+// b.insert(9);
+// b.insert(8);
+// b.insert(11);
+// b.insert(14);
 
 // console.log(b.min());
 // console.log(b.max());
 // console.log(b.search(1));
-b.remove(10);
-console.dir(b);
+// b.remove(10);
+// console.dir(b);
