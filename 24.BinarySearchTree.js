@@ -95,6 +95,7 @@ export default class BinarySearchTree {
   remove(key) {
     this.root = this.removeNode(this.root, key);
   }
+  /*
   removeNode(node, key) {
     if (node == null) {
       return null;
@@ -106,6 +107,39 @@ export default class BinarySearchTree {
       node.right = this.removeNode(node.right, key);
       return node;
     } else {
+      // 第一种情况
+      if (node.left == null && node.right == null) {
+        node = null;
+        return node;
+      }
+      // 第二种情况
+      if (node.left == null) {
+        node = node.right;
+        return node;
+      } else if (node.right == null) {
+        node = node.left;
+        return node;
+      }
+      // 第三种情况
+      const aux = this.minNode(node.right);
+      node.key = aux.key;
+      node.right = this.removeNode(node.right, aux.key);
+      return node;
+    }
+  }
+  */
+  removeNode(node, key) {
+    if (node == null) {
+      return null;
+    }
+    if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
+      node.left = this.removeNode(node.left, key);
+      return node;
+    } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
+      node.right = this.removeNode(node.right, key);
+      return node;
+    } else {
+      // 键值相等，说明要删除的就是这个node
       // 第一种情况
       if (node.left == null && node.right == null) {
         node = null;
@@ -142,5 +176,5 @@ export default class BinarySearchTree {
 // console.log(b.min());
 // console.log(b.max());
 // console.log(b.search(1));
-// b.remove(10);
+// b.remove(6);
 // console.dir(b);

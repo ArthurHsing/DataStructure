@@ -95,7 +95,7 @@ class AVLTree extends BinarySearchTree {
       }
       // Left right case
       if (this.getBalanceFactor(node.left) === BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT) {
-        return this.rotationLR(node.left);
+        return this.rotationLR(node);
       }
     }
     if (balanceFactor === BalanceFactor.UNBALANCED_RIGHT) {
@@ -108,24 +108,23 @@ class AVLTree extends BinarySearchTree {
       }
       // Right left case
       if (this.getBalanceFactor(node.right) === BalanceFactor.SLIGHTLY_UNBALANCED_LEFT) {
-        return this.rotationRL(node.right);
+        return this.rotationRL(node);
       }
     }
     return node;
   }
 }
 
-const a = new AVLTree();
-a.insert(9);
-a.insert(8);
-a.insert(7);
-a.insert(6);
-a.insert(5);
-a.insert(4);
-a.insert(3);
-a.insert(2);
-a.insert(1);
-a.remove(3);
-console.dir(a);
-// console.log(a.min());
-// console.log(a.max());
+// const a = new AVLTree();
+// a.insert(9);
+// a.insert(8);
+// a.insert(7);
+// a.insert(6);
+// a.insert(5);
+// a.insert(4);
+// a.insert(3);
+// a.insert(2);
+// a.insert(1);
+// a.remove(1);
+// a.remove(5);
+// console.dir(a);
