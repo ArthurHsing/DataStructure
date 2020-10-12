@@ -73,11 +73,11 @@ export class MinHeap {
   }
 }
 
-const mh = new MinHeap();
-mh.insert(3);
-mh.insert(5);
-mh.insert(2);
-mh.insert(4);
-mh.insert(1);
+// const mh = new MinHeap();
+// mh.insert(3);
+// mh.insert(5);
+// mh.insert(2);
+// mh.insert(4);
+// mh.insert(1);
 // mh.extract();
-console.dir(mh);
+// console.dir(mh);
