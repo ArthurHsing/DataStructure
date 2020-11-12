@@ -10,7 +10,7 @@ const minCoin = (coins, amount) => {
     let minCoins = [];
     let newAmount;
     let newCoin;
-    for (let i = 0; i < coins.length; i++) {
+    for (let i = 0; i < coins.length; i++) {  //每个硬币代表一种情况，比较哪一种情况下的硬币数量最少，每一种情况通过递归迭代来找到最小的值
       const coin = coins[i];
       newAmount = value - coin;
       if (newAmount >= 0) {
