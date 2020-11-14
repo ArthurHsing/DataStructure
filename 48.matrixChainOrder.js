@@ -1,3 +1,14 @@
+const print = (s, i, j) => {
+  if (i === j) {
+    console.log(`A[${i}]`);
+  } else {
+    console.log('(');
+    print(s, i, s[i][j]);
+    print(s, s[i][j] + 1, j)
+    console.log(')');
+  }
+}
+
 const matrixChainOrder = (p) => {
   const n = p.length - 1;
   const m = [];
@@ -25,7 +36,7 @@ const matrixChainOrder = (p) => {
       }
     }
   }
-  console.log(m);
+  print(s, 1, n);
   return m[1][n];
 }
 const p = [10, 100, 5, 50, 1];
