@@ -16,10 +16,11 @@ const findPutIn = (n, capacity, weights, values, kS) => {
 const knapSack = (capacity, weights, values) => {
   const n = weights.length;
   const kS = [];
-  for (let i = 0; i <= n; i++) {
-    kS[i] = []; //最大价值矩阵
-  }
+  // for (let i = 0; i <= n; i++) {
+  //   kS[i] = []; //最大价值矩阵
+  // }
   for (let i = 0; i <= n; i++) {  //i代表前i个物品
+    kS[i] = []; //最大价值矩阵
     for (let w = 0; w <= capacity; w++) { //w代表背包的容量
       if (i === 0 || w === 0) { //当没有物品或者背包容量为0时，那么无论如何，价值都为0
         kS[i][w] = 0;
@@ -34,10 +35,11 @@ const knapSack = (capacity, weights, values) => {
       }
     }
   }
+  console.log(kS);
   return { maxValue: kS[n][capacity], putIn: findPutIn(n, capacity, weights, values, kS) };
 }
 
-const weights = [1, 2, 3, 4, 5];
+const weights = [5, 4, 3, 2, 1];
 const values = [10, 5, 3, 24, 1];
 const capacity = 6;
 console.log(knapSack(capacity, weights, values));
