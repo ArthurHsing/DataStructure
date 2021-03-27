@@ -45,7 +45,6 @@ const matrixChainOrder = (p) => {
       m[i][j] = Number.MAX_SAFE_INTEGER;
       // k代表选取的分隔点，根据不同的分隔点，来更新最小相乘次数m[i][j]的值（i代表开始矩阵，j代表结束矩阵）
       for (let k = i; k <= j - 1; k++) {
-        console.log(i - 1, k, j);
         // 这一步是非常妙的，也就是最重要的状态转移方程，i代表开始矩阵、j代表结束矩阵、k代表分隔点
         // 自己写三个矩阵出来就可以推出这个转移方程
         const q = m[i][k] + m[k + 1][j] + p[i - 1] * p[k] * p[j];
@@ -56,10 +55,7 @@ const matrixChainOrder = (p) => {
       }
     }
   }
-  print(s, 1, n);
-  console.log(m);
-  console.log(s);
   return m[1][n];
 }
-const p = [10, 100, 5];
+const p = [10, 100];
 console.log(matrixChainOrder(p));
