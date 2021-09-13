@@ -1,5 +1,7 @@
 function partition(arr, left, right) {
-  const pivot = arr[Math.floor((left + right) / 2)];
+  // const pivot = arr[Math.floor((left + right) / 2)];
+  const pivotIndex = left + Math.floor(Math.random() * (right - left));
+  const pivot = arr[pivotIndex];
   while (left <= right) {
     while (arr[left] < pivot) {
       left++;
